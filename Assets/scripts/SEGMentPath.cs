@@ -38,7 +38,7 @@ public class SEGMentPath : MonoBehaviour {
 	public string m_UIElementsDirectoryName = "UI/";
 	public string m_titleLoadingImageName = "TitleLoading.png";
 
-    StreamWriter writer = new StreamWriter("./debug.txt", true);
+    //StreamWriter writer = new StreamWriter("./debug.txt", true);
 
     string m_envGameFolder = Environment.GetEnvironmentVariable("SEGMENT_GAME_FOLDER");
     string m_envGameFile = Environment.GetEnvironmentVariable("SEGMENT_GAME_FILE");

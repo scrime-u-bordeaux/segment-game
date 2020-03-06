@@ -278,9 +278,33 @@ namespace SEGMent.Json
                 scene.id = rooms.CreateRoom();
                 pathToScene[scene.Path] = scene;
 
+                string startTextDescription = scene.StartText;
+
+                // DIARY TEMPORARY SOLUTION - TO IMPROVE WHEN EDITOR IS READY
+                string diaryFileLocation = "";
+                startTextDescription = startTextDescription.Trim();
+
+                if (startTextDescription.Length > 0)
+                {
+                    if (startTextDescription[0] == '[')
+                    {
+                        if (startTextDescription.IndexOf(']') != -1)
+                        {
+                            Debug.Log("DIARY !!!!!");
+                            diaryFileLocation = startTextDescription.Substring(1, startTextDescription.IndexOf(']') - 1);
+                            Debug.Log(diaryFileLocation);
+                            rooms.SetRoomDiaryEntry(scene.id, diaryFileLocation, true);
+                            startTextDescription = startTextDescription.Substring(startTextDescription.IndexOf(']') + 1);
+                            startTextDescription = startTextDescription.Trim();
+                        }
+                       
+                    }
+                }
+                // END OF DIARY TEMPORARY SOLUTION 
+
                 rooms.SetRoomBackgroundImageURL(scene.id, scene.Image);
                 rooms.SetRoomBackgroundMusic(scene.id, SanitizeSound(scene.Ambience.Path), scene.Ambience.Repeat);
-                rooms.SetRoomDescription(scene.id, scene.StartText, scene.RepeatText);
+                rooms.SetRoomDescription(scene.id, startTextDescription, scene.RepeatText);
                 // rooms.SetRoomDiaryEntry(scene.id, scene.diaryItem, scene.Highlight);
                 
                 //Check if a radar is needed in the scene
