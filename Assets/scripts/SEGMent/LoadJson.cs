@@ -286,18 +286,22 @@ namespace SEGMent.Json
 
                 if (startTextDescription.Length > 0)
                 {
-                    if (startTextDescription[0] == '[')
+                    if ((startTextDescription[0] == '[') || (startTextDescription[0] == '|'))
                     {
                         if (startTextDescription.IndexOf(']') != -1)
                         {
-                            Debug.Log("DIARY !!!!!");
                             diaryFileLocation = startTextDescription.Substring(1, startTextDescription.IndexOf(']') - 1);
-                            Debug.Log(diaryFileLocation);
                             rooms.SetRoomDiaryEntry(scene.id, diaryFileLocation, true);
                             startTextDescription = startTextDescription.Substring(startTextDescription.IndexOf(']') + 1);
                             startTextDescription = startTextDescription.Trim();
+                        } else if (startTextDescription.LastIndexOf('|') != 0)
+                        {
+                            diaryFileLocation = startTextDescription.Substring(1, startTextDescription.LastIndexOf('|') - 1);
+                            rooms.SetRoomDiaryEntry(scene.id, diaryFileLocation, false);
+                            startTextDescription = startTextDescription.Substring(startTextDescription.LastIndexOf('|') + 1);
+                            startTextDescription = startTextDescription.Trim();
                         }
-                       
+
                     }
                 }
                 // END OF DIARY TEMPORARY SOLUTION 
