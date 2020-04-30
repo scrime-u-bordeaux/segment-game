@@ -8,6 +8,7 @@ debug.txt
 /[Bb]uilds/
 /[Ll]ogs/
 /[Mm]emoryCaptures/
+/game*/
 
 # Never ignore Asset meta data
 !/[Aa]ssets/**/*.meta

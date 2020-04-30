@@ -434,8 +434,13 @@ namespace SEGMent.Json
                     case "SceneToScene":
                     {
                         var t = trans.Transition.SceneToScene;
-                        var source = pathToScene[t.From];
+
+                            Debug.Log("SCENE TO SCENE :" + t.From + " " + t.To);
+
+                            var source = pathToScene[t.From];
                         var target = pathToScene[t.To];
+
+
                         
                         switch(t.Riddle.Which)
                         {
@@ -504,6 +509,7 @@ namespace SEGMent.Json
                     {
                         var t = trans.Transition.ClickAreaToScene;
                         var source = pathToClick[t.From];
+                            Debug.Log("CLICK AREA :" + t.From + " " + t.To);
                         var target = pathToScene[t.To];
 
                         trans_id = rooms.CreateClickableTransition(
