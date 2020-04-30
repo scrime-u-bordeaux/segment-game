@@ -494,8 +494,9 @@ public class Main : MonoBehaviour {
 	}
 
 	IEnumerator UpdateSceneCoroutine() {
-		//GenericLog.Log("UPDATE SCENE");
-		while (!SEGMentPath.instance.ArePathGenerated()) {
+        m_UIManager.RemoveCluePanel();
+        //GenericLog.Log("UPDATE SCENE");
+        while (!SEGMentPath.instance.ArePathGenerated()) {
 			yield return null;
 		}
 
@@ -852,6 +853,7 @@ public class Main : MonoBehaviour {
 		
 		m_currentlyPlayedMusic = m_SEGMentEngine.GetCurrentRoomBackgroundMusicName();
 
+        m_UIManager.CluePanelLoadingIsComplete();
 		m_isSceneLoaded = true;
 	}
 
@@ -882,6 +884,7 @@ public class Main : MonoBehaviour {
 				m_mustHighlightDiary = false;
 			}
 
+          
 		
 		}
 	}

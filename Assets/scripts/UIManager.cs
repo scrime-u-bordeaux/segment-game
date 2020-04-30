@@ -56,6 +56,8 @@ public class UIManager : MonoBehaviour
 
 	private bool m_advicePanelHasBeenDisplayed = false;
 
+    public ClueManager m_clueManager;
+
 
 
 	// Use this for initialization
@@ -368,6 +370,16 @@ public class UIManager : MonoBehaviour
 		m_mustHighlightNewDiaryEntry = true;
 	}
 
-	
+    public void RemoveCluePanel()
+    {
+        m_clueManager.CluePanelOff();
+    }
+
+    public void CluePanelLoadingIsComplete()
+    {
+        m_clueManager.SceneLoaded();
+    }
+
+
 
 }
