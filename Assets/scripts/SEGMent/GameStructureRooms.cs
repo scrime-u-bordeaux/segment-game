@@ -83,7 +83,27 @@ namespace SEGMent
 			m_rooms[roomID].SetDiaryEntry(diaryEntryName, mustBeHighlighted);
 		}
 
-		public int CreateItem(int roomID, BoundingBox relativePosInRoom) {
+       /* public RoomClue PopClue(int roomID)
+        {
+            if (roomID >= m_rooms.Count)
+            {
+                return null;
+            }
+
+            return m_rooms[roomID].PopClue();
+        }*/
+
+        public void AddRoomClues(int roomID, string key, List<string> values)
+        {
+            if (roomID >= m_rooms.Count)
+            {
+                return;
+            }
+
+            m_rooms[roomID].AddRoomClues(key, values);
+        }
+
+        public int CreateItem(int roomID, BoundingBox relativePosInRoom) {
 			if (roomID >= m_rooms.Count) {
 				return CREATION_ERROR;
 			}

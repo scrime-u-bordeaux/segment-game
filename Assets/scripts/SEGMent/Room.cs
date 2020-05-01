@@ -11,6 +11,12 @@ using UnityEngine;
 
 namespace SEGMent
 {
+    public class RoomClue
+    {
+        public string key;
+        public List<string> clues;
+    }
+
 	public class Room: GraphNode
 	{
 		private string m_backgroundImageURL = "";
@@ -28,6 +34,7 @@ namespace SEGMent
 
 		private List<Item> m_includedItems;
 		private List<ClickText> m_includedClickText;
+        private List<RoomClue> m_roomClues;
 
 
 		public Room (): base()
@@ -36,6 +43,7 @@ namespace SEGMent
 
 			m_includedItems = new List<Item>();
 			m_includedClickText = new List<ClickText>();
+            m_roomClues = new List<RoomClue>();
 		}
 
 		public bool IsAnAnswerRoom() 
@@ -124,7 +132,44 @@ namespace SEGMent
 			m_diaryEntryMustBeHighlighted = mustBeHighlighted;
 		}
 
-		public string PopDiaryEntry() {
+        public void AddRoomClues(string key, List<string> values)
+        {
+            if (values.Count > 0)
+            {
+                RoomClue currentClue = new RoomClue();
+
+                currentClue.key = key;
+                currentClue.clues = new List<string>(values);
+
+                m_roomClues.Add(currentClue);
+
+               /* Debug.Log("ROOM CUE KEY " + currentClue.key);
+
+                foreach (string currentValue in currentClue.clues)
+                {
+                    Debug.Log("ROOM CUE VALUE " + currentValue);
+                }*/
+            }
+           
+        }
+
+        public RoomClue PopClue()
+        {
+            if (m_roomClues.Count == 0)
+            {
+                return null;
+            } else
+            {
+                RoomClue clueToPop = m_roomClues[0];
+
+                m_roomClues.RemoveAt(0);
+                return clueToPop;
+            }
+           
+        }
+
+
+        public string PopDiaryEntry() {
 			string result = m_diaryEntryName;
 
 			m_diaryEntryName = "";

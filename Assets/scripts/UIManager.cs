@@ -7,6 +7,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using System.Collections.Generic;
 
 using UnityEngine.Events;
 
@@ -373,6 +374,11 @@ public class UIManager : MonoBehaviour
     public void RemoveCluePanel()
     {
         m_clueManager.CluePanelOff();
+    }
+
+    public void AddClue(string key, List<string> values)
+    {
+        m_clueManager.AddClues(key, values);
     }
 
     public void CluePanelLoadingIsComplete()

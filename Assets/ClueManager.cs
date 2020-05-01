@@ -43,7 +43,7 @@ public class ClueManager : MonoBehaviour
         ResetChrono();
 
         // FOR TEST ONLY, TO BE REMOVES SOON
-        List<string> testList = new List<string>();
+        /*List<string> testList = new List<string>();
         testList.Add("a");
         testList.Add("b");
         testList.Add("c");
@@ -55,7 +55,7 @@ public class ClueManager : MonoBehaviour
 
         AddClues("TEST", testList);
         AddClues("TEST", testList2);
-        AddClues("TEST2", testList);
+        AddClues("TEST2", testList);*/
 
     }
 
@@ -114,6 +114,12 @@ public class ClueManager : MonoBehaviour
 
     public void AddClues(string key, List<string> cluesToAdd)
     {
+        if (key[0] == '-')
+        {
+            RemoveClues(key.Substring(1));
+            return;
+        }
+
         bool cluesHaveBeenAdded = false;
 
         foreach (Clues currentClues in m_cluesList)
@@ -165,7 +171,7 @@ public class ClueManager : MonoBehaviour
         if (indexToRemove == 0)
         {
             CluePanelOff();
-
+            ResetChrono();
             m_newClueHasBeenChecked = true;
         }
     }

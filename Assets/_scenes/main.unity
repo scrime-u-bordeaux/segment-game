@@ -1146,7 +1146,7 @@ RectTransform:
   m_Children:
   - {fileID: 1421654546}
   m_Father: {fileID: 1627450681}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
@@ -2089,7 +2089,7 @@ RectTransform:
   m_Children:
   - {fileID: 1462004714}
   m_Father: {fileID: 1627450681}
-  m_RootOrder: 6
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
@@ -4769,7 +4769,7 @@ RectTransform:
   m_Children:
   - {fileID: 1250625709}
   m_Father: {fileID: 1627450681}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
@@ -5301,11 +5301,11 @@ RectTransform:
   m_Children:
   - {fileID: 1236695703}
   - {fileID: 209435764}
+  - {fileID: 354462428}
   - {fileID: 1751694041}
   - {fileID: 1370922574}
   - {fileID: 203999117}
   - {fileID: 1722413805}
-  - {fileID: 354462428}
   - {fileID: 446161459}
   - {fileID: 298016238}
   - {fileID: 679727577}
@@ -5562,7 +5562,7 @@ RectTransform:
   m_Children:
   - {fileID: 1124712165}
   m_Father: {fileID: 1627450681}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -5656,7 +5656,7 @@ RectTransform:
   m_Children:
   - {fileID: 90842371}
   m_Father: {fileID: 1627450681}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
@@ -5862,7 +5862,7 @@ MonoBehaviour:
   m_soundDirectoryName: Sounds/
   m_soundExtension: .wav
   m_diaryDirectoryName: Diary/
-  m_diaryExtension: .png
+  m_diaryExtension: 
   m_videoDirectoryName: Videos/
   m_videoExtension: .mp4
   m_UIElementsDirectoryName: UI/

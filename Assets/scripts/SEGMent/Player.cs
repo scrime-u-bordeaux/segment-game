@@ -71,7 +71,18 @@ namespace SEGMent
 			return resultString;
 		}
 
-		public string PopCurrentRoomDiaryEntryName ()
+        public RoomClue PopCurrentRoomClue()
+        {
+            
+            if (m_currentRoom != null)
+            {
+                return m_currentRoom.PopClue();
+            }
+
+            return null;
+        }
+
+        public string PopCurrentRoomDiaryEntryName ()
 		{
 			string resultString = "";
 

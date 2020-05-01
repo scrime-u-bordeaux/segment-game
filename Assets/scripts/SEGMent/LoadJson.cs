@@ -125,6 +125,7 @@ namespace SEGMent.Json
         public Metadata Metadata;
         public float[] Rect;
         public float[] ImageSize;
+        public Cue[] Cue;
         public int SceneType;
         public bool Sonar;
         public string diaryItem;
@@ -132,6 +133,7 @@ namespace SEGMent.Json
         public string StartText;
         public bool RepeatText;
         public string Image;
+        public string Journal;
         public Sound Ambience;
         public Object[] Objects;
         public Gif[] Gifs;
@@ -218,6 +220,13 @@ namespace SEGMent.Json
     }
 
     [System.Serializable]
+    public class Cue
+    {
+        public string Key;
+        public string[] Values;
+    }
+
+    [System.Serializable]
     public class Document
     {
         public Game Process;
@@ -291,13 +300,13 @@ namespace SEGMent.Json
                         if (startTextDescription.IndexOf(']') != -1)
                         {
                             diaryFileLocation = startTextDescription.Substring(1, startTextDescription.IndexOf(']') - 1);
-                            rooms.SetRoomDiaryEntry(scene.id, diaryFileLocation, true);
+                            rooms.SetRoomDiaryEntry(scene.id, diaryFileLocation + ".png", true);
                             startTextDescription = startTextDescription.Substring(startTextDescription.IndexOf(']') + 1);
                             startTextDescription = startTextDescription.Trim();
                         } else if (startTextDescription.LastIndexOf('|') != 0)
                         {
                             diaryFileLocation = startTextDescription.Substring(1, startTextDescription.LastIndexOf('|') - 1);
-                            rooms.SetRoomDiaryEntry(scene.id, diaryFileLocation, false);
+                            rooms.SetRoomDiaryEntry(scene.id, diaryFileLocation + ".png", false);
                             startTextDescription = startTextDescription.Substring(startTextDescription.LastIndexOf('|') + 1);
                             startTextDescription = startTextDescription.Trim();
                         }
@@ -305,6 +314,27 @@ namespace SEGMent.Json
                     }
                 }
                 // END OF DIARY TEMPORARY SOLUTION 
+
+                if (scene.Journal.Length > 0)
+                {
+                    rooms.SetRoomDiaryEntry(scene.id, scene.Journal, true);
+                }
+
+
+                foreach (Cue currentCue in scene.Cue)
+                {
+                    List<string> currentCueValues = new List<string>();
+                    foreach (string currentValue in currentCue.Values)
+                    {
+                        if (currentValue.Length != 0)
+                        {
+                            currentCueValues.Add(currentValue);
+                        } 
+                    }
+                    rooms.AddRoomClues(scene.id, currentCue.Key, currentCueValues);
+                }
+
+                
 
                 rooms.SetRoomBackgroundImageURL(scene.id, scene.Image);
                 rooms.SetRoomBackgroundMusic(scene.id, SanitizeSound(scene.Ambience.Path), scene.Ambience.Repeat);

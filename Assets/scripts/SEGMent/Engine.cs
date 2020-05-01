@@ -123,6 +123,11 @@ namespace SEGMent {
 			return m_player.PopCurrentRoomDiaryEntryName();
 		}
 
+        public RoomClue PopCurrentRoomTopClue()
+        {
+            return m_player.PopCurrentRoomClue();
+        }
+
 		public bool ShouldDiaryEntryBeHighlighted() {
 			return m_player.ShouldDiaryEntryBeHighlighted();
 		}

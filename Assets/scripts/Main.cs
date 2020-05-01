@@ -849,6 +849,14 @@ public class Main : MonoBehaviour {
 	
 
 		yield return null;
+
+        RoomClue currentClue = m_SEGMentEngine.PopCurrentRoomTopClue();
+
+        while (currentClue != null)
+        {
+            m_UIManager.AddClue(currentClue.key, currentClue.clues);
+            currentClue = m_SEGMentEngine.PopCurrentRoomTopClue();
+        }
 			
 		
 		m_currentlyPlayedMusic = m_SEGMentEngine.GetCurrentRoomBackgroundMusicName();
