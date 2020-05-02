@@ -19,6 +19,8 @@ namespace SEGMent
 		private List<Item> m_items;
 		private List<ClickText> m_clickTexts;
 
+        private Dictionary<string, string> m_currentEvents;
+
 		//private List<Room> m_roomsPile;
 
 		private bool m_roomChangeShouldBeImmediate = false;
@@ -29,6 +31,8 @@ namespace SEGMent
 			m_roomsPile = new List<Room>();
 			m_items = new List<Item>();
 			m_clickTexts = new List<ClickText>();
+
+            m_currentEvents = new Dictionary<string, string>();
 		}
 
 		public int CreateRoom() {
@@ -366,7 +370,38 @@ namespace SEGMent
 			return transitionToAdd.GetTransitionID();
 		}
 
-		public void TeleportToRoom(int roomID) {
+        public void AddEventToAdd(int transitionID, string eventName)
+        {
+           if (transitionID >= m_transitions.Count)
+            {
+                return;
+            }
+
+            m_transitions[transitionID].AddEventToAdd(eventName);
+        }
+
+        public void AddEventToRemove(int transitionID, string eventName)
+        {
+            if (transitionID >= m_transitions.Count)
+            {
+                return;
+            }
+
+            m_transitions[transitionID].AddEventToRemove(eventName);
+        }
+
+        public void AddEventToCheck(int transitionID, string eventName)
+        {
+            if (transitionID >= m_transitions.Count)
+            {
+                return;
+            }
+
+            m_transitions[transitionID].AddEventToCheck(eventName);
+        }
+
+
+        public void TeleportToRoom(int roomID) {
 			if (roomID >= m_rooms.Count) {
 				return;
 			}
@@ -566,6 +601,27 @@ namespace SEGMent
 		public List<Item> getAllItems() {
 			return m_items;
 		}
+
+        public bool HasEvent(string eventName)
+        {
+            return m_currentEvents.ContainsKey(eventName);
+        }
+
+        public void AddEvent(string eventName)
+        {
+            if (!HasEvent(eventName))
+            {
+                m_currentEvents[eventName] = eventName;
+            }
+        }
+
+        public void RemoveEvent(string eventName)
+        {
+            if (HasEvent(eventName))
+            {
+                m_currentEvents.Remove(eventName);
+            }
+        }
 
 	}
 }

@@ -26,8 +26,14 @@ namespace SEGMent
 
 		private bool m_hasBeenFiredOnce = false;
 
+        private List<string> m_requieredEvents;
+        private List<string> m_blockingEvents;
+        private List<string> m_eventsToAdd;
+        private List<string> m_eventsToRemove;
 
-		public GraphTransition (GraphNode from, GraphNode to, bool isImmediate = false, bool isUnique = false)
+
+
+        public GraphTransition (GraphNode from, GraphNode to, bool isImmediate = false, bool isUnique = false)
 		{
 			m_nodeFrom = from;
 			m_nodeTo = to;
@@ -39,6 +45,11 @@ namespace SEGMent
 			}
 
 			m_transitionSounds = new List<string>();
+
+            m_requieredEvents = new List<string>();
+            m_blockingEvents = new List<string>();
+            m_eventsToAdd = new List<string>();
+            m_eventsToRemove = new List<string>();
 
 			m_isImmediate = isImmediate;
 			m_isUnique = isUnique;
@@ -95,6 +106,55 @@ namespace SEGMent
 		public bool ShouldBeAutomaticallyFired() {
 			return (m_isUnique && m_hasBeenFiredOnce);
 		}
-	}
+
+        public List<string> GetRequieredEvents()
+        {
+            return m_requieredEvents;
+        }
+
+        public List<string> GetBlockingEvents()
+        {
+            return m_blockingEvents;
+        }
+
+        public List<string> GetEventsToAdd()
+        {
+            return m_eventsToAdd;
+        }
+
+        public List<string> GetEventsToRemove()
+        {
+            return m_eventsToRemove;
+        }
+
+        public void AddEventToAdd(string eventName)
+        {
+           // GenericLog.Log("EVENT TO ADD " + eventName);
+            m_eventsToAdd.Add(eventName);
+        }
+
+        public void AddEventToRemove(string eventName)
+        {
+            // GenericLog.Log("EVENT TO REMOVE " + eventName);
+            m_eventsToRemove.Add(eventName);
+        }
+
+        public void AddEventToCheck(string eventName)
+        {
+            if (eventName.Length > 0)
+            {
+                if (eventName[0] == '!')
+                {
+               //     GenericLog.Log("BLOCKING EVENT " + eventName.Substring(1));
+                    m_blockingEvents.Add(eventName.Substring(1));
+                } else
+                {
+                 //   GenericLog.Log("REQUIERED EVENT " + eventName);
+                    m_requieredEvents.Add(eventName);
+                }
+            }
+            
+        }
+    }
 }
 

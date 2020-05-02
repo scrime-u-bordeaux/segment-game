@@ -209,6 +209,9 @@ namespace SEGMent.Json
         public Sound Sound;
         public TransitionImpl Transition;
         public bool Unique;
+        public string[] EventsRequired;
+        public string[] EventsToAdd;
+        public string[] EventsToRemove;
     }
 
 
@@ -563,6 +566,23 @@ namespace SEGMent.Json
                 {
                     rooms.SetTransitionSound(trans_id.Value, SanitizeSound(trans.Sound.Path));
                 }
+
+
+                foreach(string currentEvent in trans.EventsToAdd)
+                {
+                    rooms.AddEventToAdd(trans_id.Value, currentEvent);
+                }
+
+                foreach (string currentEvent in trans.EventsToRemove)
+                {
+                    rooms.AddEventToRemove(trans_id.Value, currentEvent);
+                }
+
+                foreach (string currentEvent in trans.EventsRequired)
+                {
+                    rooms.AddEventToCheck(trans_id.Value, currentEvent);
+                }
+
             }
             
             if(initialRoom != null)
