@@ -185,11 +185,10 @@ namespace SEGMent
 			return false;
 		}
 
-        // TODO : TO MAP !!!
-		public string GetInputQuestion() {
+    	public string GetInputQuestion() {
 			if (m_currentRoom != null) {
 				if (CanAnswer()) {
-					return m_currentRoom.GetQuestion();
+					return m_map.GetQuestion();
 				}
 			}
 
@@ -200,7 +199,7 @@ namespace SEGMent
         public bool GetInputIsPassword() {
 			if (m_currentRoom != null) {
 				if (CanAnswer()) {
-					return m_currentRoom.GetIsSolutionPasswordType();
+					return m_map.GetIsSolutionPasswordType();
 				}
 			}
 

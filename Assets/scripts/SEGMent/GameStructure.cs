@@ -115,12 +115,22 @@ namespace SEGMent
 
         public void ComputeTransitionEvent(GraphTransition transition)
         {
-            foreach (string currentEvent in transition.GetEventsToAdd())
+           /* foreach (string currentEvent in transition.GetEventsToAdd())
             {
                 AddEvent(currentEvent);
             }
 
             foreach (string currentEvent in transition.GetEventsToRemove())
+            {
+                RemoveEvent(currentEvent);
+            }*/
+
+            foreach (string currentEvent in transition.PopEventsToAdd())
+            {
+                AddEvent(currentEvent);
+            }
+
+            foreach (string currentEvent in transition.PopEventsToRemove())
             {
                 RemoveEvent(currentEvent);
             }

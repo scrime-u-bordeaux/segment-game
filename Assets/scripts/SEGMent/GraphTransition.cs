@@ -122,9 +122,25 @@ namespace SEGMent
             return m_eventsToAdd;
         }
 
+        public List<string> PopEventsToAdd()
+        {
+            List<string> returnList = new List<string>(m_eventsToAdd);
+            m_eventsToAdd.Clear();
+
+            return returnList;
+        }
+
         public List<string> GetEventsToRemove()
         {
             return m_eventsToRemove;
+        }
+
+        public List<string> PopEventsToRemove()
+        {
+            List<string> returnList = new List<string>(m_eventsToRemove);
+            m_eventsToRemove.Clear();
+
+            return returnList;
         }
 
         public void AddEventToAdd(string eventName)

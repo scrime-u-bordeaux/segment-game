@@ -51,26 +51,14 @@ namespace SEGMent
 			
 		}*/
 
-		public string GetQuestion() 
+		/*public string GetQuestion() 
 		{
-			foreach (GraphTransition transition in m_outgoingTransitions) {
-				if ((transition.GetTransitionType() == TRANSITION_TYPE.SOLUTION_TYPE) && (transition.IsActive())) {
-					return ((SolutionTransition) transition).GetQuestion();
-				}
-			}
 			
-			return "";
-		}
+		}*/
 
-		public bool GetIsSolutionPasswordType() {
-			foreach (GraphTransition transition in m_outgoingTransitions) {
-				if ((transition.GetTransitionType() == TRANSITION_TYPE.SOLUTION_TYPE) && (transition.IsActive())) {
-					return ((SolutionTransition) transition).IsPassword();
-				}
-			}
-
-			return false;
-		}
+		/*public bool GetIsSolutionPasswordType() {
+			
+		}*/
 
 		public void SetBackgroundImageURL (string url) {
 			m_backgroundImageURL = url;

@@ -504,6 +504,40 @@ namespace SEGMent
             return false;
         }
 
+        public string GetQuestion()
+        {
+            foreach (GraphTransition currentTransition in GetCurrentRoom().GetOutgoingTransitions())
+            {
+                if (!IsTransitionEventReady(currentTransition))
+                {
+                    continue;
+                }
+                if ((currentTransition.GetTransitionType() == TRANSITION_TYPE.SOLUTION_TYPE) && (currentTransition.IsActive()))
+                {
+                    return ((SolutionTransition)currentTransition).GetQuestion();
+                }
+            }
+
+            return "";
+        }
+
+        public bool GetIsSolutionPasswordType()
+        {
+            foreach (GraphTransition currentTransition in GetCurrentRoom().GetOutgoingTransitions())
+            {
+                if (!IsTransitionEventReady(currentTransition))
+                {
+                    continue;
+                }
+                if ((currentTransition.GetTransitionType() == TRANSITION_TYPE.SOLUTION_TYPE) && (currentTransition.IsActive()))
+                {
+                    return ((SolutionTransition)currentTransition).IsPassword();
+                }
+            }
+
+            return false;
+        }
+
 
 
         public bool ReceiveAnswer(string answer, ref string help) {
