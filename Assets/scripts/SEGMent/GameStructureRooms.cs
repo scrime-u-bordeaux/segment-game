@@ -19,7 +19,7 @@ namespace SEGMent
 		private List<Item> m_items;
 		private List<ClickText> m_clickTexts;
 
-        private Dictionary<string, string> m_currentEvents;
+       
 
 		//private List<Room> m_roomsPile;
 
@@ -32,7 +32,7 @@ namespace SEGMent
 			m_items = new List<Item>();
 			m_clickTexts = new List<ClickText>();
 
-            m_currentEvents = new Dictionary<string, string>();
+           
 		}
 
 		public int CreateRoom() {
@@ -440,7 +440,11 @@ namespace SEGMent
 				List<GraphTransition> outGoingTransitions = currentRoom.GetOutgoingTransitions();
 
 				foreach (GraphTransition currentTransition in outGoingTransitions) {
-					if (currentTransition.GetTransitionType() == TRANSITION_TYPE.OBJECT_STATE_SOLUTION_TYPE) {
+                    if (!IsTransitionEventReady(currentTransition))
+                    {
+                        continue;
+                    }
+                    if (currentTransition.GetTransitionType() == TRANSITION_TYPE.OBJECT_STATE_SOLUTION_TYPE) {
 					//	GenericLog.Log("heyaaaaaaa2");
 						FireTransition(currentTransition);
 					//	GenericLog.Log("heyaaaaaaa3");
@@ -461,7 +465,11 @@ namespace SEGMent
 				List<GraphTransition> outGoingTransitions = currentRoom.GetOutgoingTransitions();
 
 				foreach (GraphTransition currentTransition in outGoingTransitions) {
-					if (currentTransition.GetTransitionType() == TRANSITION_TYPE.PUZZLE_SOLUTION_TYPE) {
+                    if (!IsTransitionEventReady(currentTransition))
+                    {
+                        continue;
+                    }
+                    if (currentTransition.GetTransitionType() == TRANSITION_TYPE.PUZZLE_SOLUTION_TYPE) {
 						//	GenericLog.Log("heyaaaaaaa2");
 						FireTransition(currentTransition);
 						//	GenericLog.Log("heyaaaaaaa3");
@@ -485,7 +493,11 @@ namespace SEGMent
 				List<GraphTransition> outGoingTransitions = currentRoom.GetOutgoingTransitions();
 
 				foreach (GraphTransition currentTransition in outGoingTransitions) {
-					if (currentTransition.GetTransitionType() == TRANSITION_TYPE.SOLUTION_TYPE) {
+                    if (!IsTransitionEventReady(currentTransition))
+                    {
+                        continue;
+                    }
+                    if (currentTransition.GetTransitionType() == TRANSITION_TYPE.SOLUTION_TYPE) {
 						SolutionTransition currentSolutionTransition = (SolutionTransition) currentTransition;
 
 						List<string> solutions = currentSolutionTransition.GetSolutions();
@@ -539,6 +551,11 @@ namespace SEGMent
 				List<GraphTransition> outGoingTransitions = currentRoom.GetOutgoingTransitions();
 				
 				foreach (GraphTransition currentTransition in outGoingTransitions) {
+                    if (!IsTransitionEventReady(currentTransition))
+                    {
+                        continue;
+                    }
+
 					if ((currentTransition.GetTransitionType () == TRANSITION_TYPE.CLIC_AREA_TYPE)
 						|| (currentTransition.GetTransitionType () == TRANSITION_TYPE.BACK_TRANSITION)) {
 						AreaClicTransition currentClicTransition = (AreaClicTransition)currentTransition;
@@ -602,27 +619,11 @@ namespace SEGMent
 			return m_items;
 		}
 
-        public bool HasEvent(string eventName)
-        {
-            return m_currentEvents.ContainsKey(eventName);
-        }
+        
 
-        public void AddEvent(string eventName)
-        {
-            if (!HasEvent(eventName))
-            {
-                m_currentEvents[eventName] = eventName;
-            }
-        }
+       
 
-        public void RemoveEvent(string eventName)
-        {
-            if (HasEvent(eventName))
-            {
-                m_currentEvents.Remove(eventName);
-            }
-        }
 
-	}
+    }
 }
 
