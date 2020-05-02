@@ -482,9 +482,31 @@ namespace SEGMent
 			return false;
 		}
 
+        public bool CanAnswer()
+        {
+            if (GetCurrentRoom() != null)
+            {
+                foreach (GraphTransition currentTransition in GetCurrentRoom().GetOutgoingTransitions())
+                {
+                    if (!IsTransitionEventReady(currentTransition))
+                    {
+                        continue;
+                    }
+                    if ((currentTransition.GetTransitionType() == TRANSITION_TYPE.SOLUTION_TYPE) && (currentTransition.IsActive()))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+
+            return false;
+        }
 
 
-		public bool ReceiveAnswer(string answer, ref string help) {
+
+        public bool ReceiveAnswer(string answer, ref string help) {
 			Room currentRoom = GetCurrentRoom();
 
 			help = "";
@@ -597,7 +619,11 @@ namespace SEGMent
 				List<GraphTransition> outGoingTransitions = currentRoom.GetOutgoingTransitions ();
 
 				foreach (GraphTransition currentTransition in outGoingTransitions) {
-					if ((currentTransition.GetTransitionType () == TRANSITION_TYPE.CLIC_AREA_TYPE) ||
+                    if (!IsTransitionEventReady(currentTransition))
+                    {
+                        continue;
+                    }
+                    if ((currentTransition.GetTransitionType () == TRANSITION_TYPE.CLIC_AREA_TYPE) ||
 						(currentTransition.GetTransitionType () == TRANSITION_TYPE.BACK_TRANSITION)){
 						AreaClicTransition currentClicTransition = (AreaClicTransition)currentTransition;
 						BoundingBox currentTransitionBB = currentClicTransition.GetRelativeBoundingBox ();

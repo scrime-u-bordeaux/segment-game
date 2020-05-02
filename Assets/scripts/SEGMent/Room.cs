@@ -46,16 +46,10 @@ namespace SEGMent
             m_roomClues = new List<RoomClue>();
 		}
 
-		public bool IsAnAnswerRoom() 
+		/*public bool IsAnAnswerRoom() 
 		{
-			foreach (GraphTransition transition in m_outgoingTransitions) {
-				if ((transition.GetTransitionType() == TRANSITION_TYPE.SOLUTION_TYPE) && (transition.IsActive())) {
-					return true;
-				}
-			}
-
-			return false;
-		}
+			
+		}*/
 
 		public string GetQuestion() 
 		{
