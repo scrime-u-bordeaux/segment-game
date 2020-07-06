@@ -972,7 +972,7 @@ MonoBehaviour:
   m_soundDirectoryName: Sounds/
   m_soundExtension: .wav
   m_diaryDirectoryName: Diary/
-  m_diaryExtension: .png
+  m_diaryExtension: 
   m_videoDirectoryName: Videos/
   m_videoExtension: .mp4
   m_UIElementsDirectoryName: UI/

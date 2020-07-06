@@ -125,7 +125,7 @@ namespace SEGMent.Json
         public Metadata Metadata;
         public float[] Rect;
         public float[] ImageSize;
-        public Cue[] Cue;
+        public Cue[] Cue = null;
         public int SceneType;
         public bool Sonar;
         public string diaryItem;
@@ -133,7 +133,7 @@ namespace SEGMent.Json
         public string StartText;
         public bool RepeatText;
         public string Image;
-        public string Journal;
+        public string Journal = "";
         public Sound Ambience;
         public Object[] Objects;
         public Gif[] Gifs;
@@ -209,9 +209,9 @@ namespace SEGMent.Json
         public Sound Sound;
         public TransitionImpl Transition;
         public bool Unique;
-        public string[] EventsRequired;
-        public string[] EventsToAdd;
-        public string[] EventsToRemove;
+        public string[] EventsRequired = null;
+        public string[] EventsToAdd = null;
+        public string[] EventsToRemove = null;
     }
 
 
@@ -323,20 +323,24 @@ namespace SEGMent.Json
                     rooms.SetRoomDiaryEntry(scene.id, scene.Journal, true);
                 }
 
-
-                foreach (Cue currentCue in scene.Cue)
+                
+                if (scene.Cue != null)
                 {
-                    List<string> currentCueValues = new List<string>();
-                    foreach (string currentValue in currentCue.Values)
+                    foreach (Cue currentCue in scene.Cue)
                     {
-                        if (currentValue.Length != 0)
+                        List<string> currentCueValues = new List<string>();
+                        foreach (string currentValue in currentCue.Values)
                         {
-                            currentCueValues.Add(currentValue);
-                        } 
+                            if (currentValue.Length != 0)
+                            {
+                                currentCueValues.Add(currentValue);
+                            }
+                        }
+                        rooms.AddRoomClues(scene.id, currentCue.Key, currentCueValues);
                     }
-                    rooms.AddRoomClues(scene.id, currentCue.Key, currentCueValues);
                 }
-
+              
+                
                 
 
                 rooms.SetRoomBackgroundImageURL(scene.id, scene.Image);
@@ -567,22 +571,31 @@ namespace SEGMent.Json
                     rooms.SetTransitionSound(trans_id.Value, SanitizeSound(trans.Sound.Path));
                 }
 
-
-                foreach(string currentEvent in trans.EventsToAdd)
+                if (trans.EventsToAdd != null)
                 {
-                    rooms.AddEventToAdd(trans_id.Value, currentEvent);
+                    foreach (string currentEvent in trans.EventsToAdd)
+                    {
+                        rooms.AddEventToAdd(trans_id.Value, currentEvent);
+                    }
                 }
 
-                foreach (string currentEvent in trans.EventsToRemove)
+
+                if (trans.EventsToRemove != null)
                 {
-                    rooms.AddEventToRemove(trans_id.Value, currentEvent);
+                    foreach (string currentEvent in trans.EventsToRemove)
+                    {
+                        rooms.AddEventToRemove(trans_id.Value, currentEvent);
+                    }
                 }
 
-                foreach (string currentEvent in trans.EventsRequired)
+                if (trans.EventsRequired != null)
                 {
-                    rooms.AddEventToCheck(trans_id.Value, currentEvent);
+                    foreach (string currentEvent in trans.EventsRequired)
+                    {
+                        rooms.AddEventToCheck(trans_id.Value, currentEvent);
+                    }
                 }
-
+                
             }
             
             if(initialRoom != null)
