@@ -126,14 +126,17 @@ namespace SEGMent.Json
         public float[] Rect;
         public float[] ImageSize;
         public Cue[] Cue = null;
+        public string[] CuesToRemove = null;
         public int SceneType;
         public bool Sonar;
         public string diaryItem;
+       
         public bool Highlight;
         public string StartText;
         public bool RepeatText;
         public string Image;
         public string Journal = "";
+        public bool JournalBlink;
         public Sound Ambience;
         public Object[] Objects;
         public Gif[] Gifs;
@@ -252,10 +255,10 @@ namespace SEGMent.Json
             {
                 s = s.Remove(0, 7);
             }
-            if(s.EndsWith(".wav"))
+            /*if(s.EndsWith(".wav"))
             {
                 s = s.Remove(s.Length - 4);
-            }
+            }*/
             return s;
         }
 
@@ -320,7 +323,7 @@ namespace SEGMent.Json
 
                 if (scene.Journal.Length > 0)
                 {
-                    rooms.SetRoomDiaryEntry(scene.id, scene.Journal, true);
+                    rooms.SetRoomDiaryEntry(scene.id, scene.Journal, scene.JournalBlink);
                 }
 
                 
@@ -339,9 +342,21 @@ namespace SEGMent.Json
                         rooms.AddRoomClues(scene.id, currentCue.Key, currentCueValues);
                     }
                 }
-              
-                
-                
+
+                if (scene.CuesToRemove != null)
+                {
+                    
+                }
+                foreach (string currentValue in scene.CuesToRemove)
+                {
+                    if (currentValue.Length != 0)
+                    {
+                        rooms.AddRoomClueToRemove(scene.id, currentValue);
+                    }
+                }
+
+
+
 
                 rooms.SetRoomBackgroundImageURL(scene.id, scene.Image);
                 rooms.SetRoomBackgroundMusic(scene.id, SanitizeSound(scene.Ambience.Path), scene.Ambience.Repeat);

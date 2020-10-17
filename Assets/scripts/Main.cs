@@ -19,7 +19,7 @@ public class PuzzleSavePos {
 }
 
 public class PuzzleSolutionCheck {
-	private float autorizedDifference = 0.02f;
+	private float autorizedDifference = 0.04f;
 
 	public PuzzleBehavior behavior;
 	public Vector2 initialPos;
@@ -857,6 +857,13 @@ public class Main : MonoBehaviour {
             m_UIManager.AddClue(currentClue.key, currentClue.clues);
             currentClue = m_SEGMentEngine.PopCurrentRoomTopClue();
         }
+
+		List<string> clueIDsToRemove = m_SEGMentEngine.GetClueIDsToRemove();
+
+		foreach(string currentID in clueIDsToRemove)
+		{
+			m_UIManager.RemoveClue(currentID);
+		}
 			
 		
 		m_currentlyPlayedMusic = m_SEGMentEngine.GetCurrentRoomBackgroundMusicName();

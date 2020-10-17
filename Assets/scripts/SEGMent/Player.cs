@@ -82,6 +82,16 @@ namespace SEGMent
             return null;
         }
 
+		public List<string> GetClueIDsToRemove()
+		{
+			if (m_currentRoom != null)
+			{
+				return m_currentRoom.GetClueIDsToRemove();
+			}
+
+			return null;
+		}
+
         public string PopCurrentRoomDiaryEntryName ()
 		{
 			string resultString = "";

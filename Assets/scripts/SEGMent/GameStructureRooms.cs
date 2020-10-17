@@ -107,7 +107,18 @@ namespace SEGMent
             m_rooms[roomID].AddRoomClues(key, values);
         }
 
-        public int CreateItem(int roomID, BoundingBox relativePosInRoom) {
+		public void AddRoomClueToRemove(int roomID, string value)
+		{
+			if (roomID >= m_rooms.Count)
+			{
+				return;
+			}
+
+			m_rooms[roomID].AddRoomClueToRemove(value);
+		}
+
+
+		public int CreateItem(int roomID, BoundingBox relativePosInRoom) {
 			if (roomID >= m_rooms.Count) {
 				return CREATION_ERROR;
 			}

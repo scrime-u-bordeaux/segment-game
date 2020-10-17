@@ -27,7 +27,8 @@ public class SEGMentPath : MonoBehaviour {
 	public bool m_mustUseStreamingAssets =  false;
 
 	public string m_soundDirectoryName = "Sounds/";
-	public string m_soundExtension = ".wav";
+	public string m_soundExtension = "";
+	public string m_secondarySoundExtension = ".mp3";
 
 	public string m_diaryDirectoryName = "Diary/";
 	public string m_diaryExtension = ".png";
@@ -181,8 +182,22 @@ public class SEGMentPath : MonoBehaviour {
 		return resultString;
 	}
 
+	public string GetSecondarySoundPath(string soundName)
+	{
+		string resultString = GetSoundPath();
+		resultString = Path.Combine(resultString, soundName);
+		resultString = resultString + GetSecondarySoundExtension();
+
+		return resultString;
+	}
+
 	public string GetSoundExtension() {
 		return m_soundExtension;
+	}
+
+	public string GetSecondarySoundExtension()
+	{
+		return m_secondarySoundExtension;
 	}
 
 	public string GetDiaryPath() {

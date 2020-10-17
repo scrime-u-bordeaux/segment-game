@@ -128,6 +128,11 @@ namespace SEGMent {
             return m_player.PopCurrentRoomClue();
         }
 
+		public List<string> GetClueIDsToRemove()
+		{
+			return m_player.GetClueIDsToRemove();
+		}
+
 		public bool ShouldDiaryEntryBeHighlighted() {
 			return m_player.ShouldDiaryEntryBeHighlighted();
 		}

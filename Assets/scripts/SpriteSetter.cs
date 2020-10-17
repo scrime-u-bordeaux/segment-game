@@ -33,6 +33,7 @@ public class SpriteSetter : MonoBehaviour {
 	public bool clickByClick = false;
 
 	private int m_currentGIFFrameIndex = 0;
+	private static int gifOrderInLayer = 0;
 
 	private bool m_mustResetCoroutine = false;
 
@@ -178,6 +179,7 @@ public class SpriteSetter : MonoBehaviour {
 
 		if (GifPreLoader.instance.MustPreload ()) {
 			List<GifSprite> currentGifSprite = GifPreLoader.instance.GetSpriteList (url);
+	
 			if (currentGifSprite != null) {
 				m_gifSpriteList = currentGifSprite;
 			}
@@ -220,7 +222,9 @@ public class SpriteSetter : MonoBehaviour {
 
 				currentGifSprite.delaySec = gifTexture.delaySec;
 				currentGifSprite.sprite = Sprite.Create (gifTexture.texture2d, rect, new Vector2 (0.5f, 0.5f), 1.0f);
-				currentGifSprite.orderInLayer = orderInLayer;
+				//currentGifSprite.orderInLayer = orderInLayer;
+				currentGifSprite.orderInLayer = gifOrderInLayer;
+				gifOrderInLayer--;
 
 				m_gifSpriteList.Add (currentGifSprite);
 

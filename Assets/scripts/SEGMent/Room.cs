@@ -36,6 +36,8 @@ namespace SEGMent
 		private List<ClickText> m_includedClickText;
         private List<RoomClue> m_roomClues;
 
+		private List<string> m_cluesToRemoves;
+
 
 		public Room (): base()
 		{
@@ -44,6 +46,8 @@ namespace SEGMent
 			m_includedItems = new List<Item>();
 			m_includedClickText = new List<ClickText>();
             m_roomClues = new List<RoomClue>();
+
+			m_cluesToRemoves = new List<string>();
 		}
 
 		/*public bool IsAnAnswerRoom() 
@@ -135,6 +139,11 @@ namespace SEGMent
            
         }
 
+		public void AddRoomClueToRemove(string clueID)
+		{
+			m_cluesToRemoves.Add(clueID);
+		}
+
         public RoomClue PopClue()
         {
             if (m_roomClues.Count == 0)
@@ -149,6 +158,11 @@ namespace SEGMent
             }
            
         }
+
+		public List<string> GetClueIDsToRemove()
+		{
+			return m_cluesToRemoves;
+		}
 
 
         public string PopDiaryEntry() {

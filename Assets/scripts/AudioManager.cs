@@ -78,13 +78,14 @@ public class AudioManager : MonoBehaviour {
 		#endif
 		WWW www = new WWW(filePath);
 		//Debug.Log(www.text);
-		#endif
+#endif
 
-		while (!www.isDone) {
+		while (!www.isDone)
+		{
 			yield return null;
 		}
-
-		GenericLog.Log("loading " + path);
+		GenericLog.Log("loading " + filePath);
+		
 		AudioClip clip = www.GetAudioClip(false);
 
 		while(clip.loadState != AudioDataLoadState.Loaded)
@@ -126,8 +127,10 @@ public class AudioManager : MonoBehaviour {
 		while (!www.isDone) {
 			yield return null;
 		}
+		GenericLog.Log("loading " + filePath);
+		
+		
 
-		GenericLog.Log("loading " + path);
 		AudioClip clip = www.GetAudioClip(false);
 		
 		while(clip.loadState != AudioDataLoadState.Loaded)

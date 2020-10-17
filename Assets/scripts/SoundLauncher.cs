@@ -60,13 +60,14 @@ public class SoundLauncher : MonoBehaviour {
 		#endif
 		WWW www = new WWW(filePath);
 		//Debug.Log(www.text);
-		#endif
+#endif
 
-		while (!www.isDone) {
+		while (!www.isDone)
+		{
 			yield return null;
 		}
-
-		GenericLog.Log("loading " + path);
+		GenericLog.Log("loading " + filePath);
+		
 		//		print("loading " + path);
 		m_soundStream.clip = www.GetAudioClip(false);
 		

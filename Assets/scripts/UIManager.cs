@@ -381,7 +381,12 @@ public class UIManager : MonoBehaviour
         m_clueManager.AddClues(key, values);
     }
 
-    public void CluePanelLoadingIsComplete()
+	public void RemoveClue(string key)
+	{
+		m_clueManager.RemoveClues(key);
+	}
+
+	public void CluePanelLoadingIsComplete()
     {
         m_clueManager.SceneLoaded();
     }
