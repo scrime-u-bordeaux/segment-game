@@ -21,6 +21,7 @@ public struct GifSprite {
 	
 
 public class SpriteSetter : MonoBehaviour {
+	private string LAYER_STRING = "_layer";
 	private bool m_spriteIsLoaded = false;
 	private bool m_gifIsLoaded = false;
 	List<GifSprite> m_gifSpriteList;
@@ -223,8 +224,18 @@ public class SpriteSetter : MonoBehaviour {
 				currentGifSprite.delaySec = gifTexture.delaySec;
 				currentGifSprite.sprite = Sprite.Create (gifTexture.texture2d, rect, new Vector2 (0.5f, 0.5f), 1.0f);
 				//currentGifSprite.orderInLayer = orderInLayer;
-				currentGifSprite.orderInLayer = gifOrderInLayer;
-				gifOrderInLayer--;
+				if (m_url.Contains(LAYER_STRING))
+				{
+					Debug.Log("LAYER " + m_url.Substring(m_url.IndexOf(LAYER_STRING) + LAYER_STRING.Length, 1));
+					int order = int.Parse(m_url.Substring(m_url.IndexOf(LAYER_STRING) + LAYER_STRING.Length, 1));
+					currentGifSprite.orderInLayer = order;
+				} else
+				{
+					currentGifSprite.orderInLayer = gifOrderInLayer;
+					gifOrderInLayer++;
+				}
+
+				
 
 				m_gifSpriteList.Add (currentGifSprite);
 

@@ -4818,7 +4818,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db42f0a9d7a8db44ba9a4a8c519d273, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_timeToHandleNewClue: 90
+  m_timeToHandleNewClue: 70
   m_chrono: 0
   m_backgroundClueButtonImage: {fileID: 1462004715}
   m_clueToggle: {fileID: 354462429}
@@ -5948,7 +5948,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eb8eebc8b5f548f4e8f3447076b8b233, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_mustPreload: 1
+  m_mustPreload: 0
 --- !u!4 &1910969147
 Transform:
   m_ObjectHideFlags: 0

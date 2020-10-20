@@ -869,6 +869,7 @@ public class Main : MonoBehaviour {
 		m_currentlyPlayedMusic = m_SEGMentEngine.GetCurrentRoomBackgroundMusicName();
 
         m_UIManager.CluePanelLoadingIsComplete();
+		Resources.UnloadUnusedAssets();
 		m_isSceneLoaded = true;
 	}
 

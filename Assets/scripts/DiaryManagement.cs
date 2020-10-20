@@ -51,9 +51,9 @@ public class DiaryManagement : MonoBehaviour {
 			}
 		}
 
-		if (Input.GetKeyDown(KeyCode.B)) {
+		/*if (Input.GetKeyDown(KeyCode.B)) {
 			HighlightNewDiaryEntry();
-		}
+		}*/
 	}
 
 	public void HighlightNewDiaryEntry() {

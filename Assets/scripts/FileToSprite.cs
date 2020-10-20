@@ -52,7 +52,9 @@ public class FileToSprite : MonoBehaviour {
 		texture.filterMode = FilterMode.Trilinear;
 		texture.anisoLevel = 1;
 
-		texture.LoadImage(m_data);
+		ImageConversion.LoadImage(texture, m_data);
+
+		//texture.LoadImage(m_data);
 		texture.name = Path.GetFileNameWithoutExtension(m_fileName);
 
 		Rect rect = new Rect();

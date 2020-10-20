@@ -75,6 +75,7 @@ public class MultiresManager : MonoBehaviour {
 	}
 
 	public void ChangeImageFromURL(string imageURL) {
+		GenericLog.Log("GETCURRENTROOMBACKGROUND PATH CHANGEIMAGE : " + imageURL);
 		StartCoroutine(ChangeImageFromURLCoroutine(imageURL));
 	}
 
